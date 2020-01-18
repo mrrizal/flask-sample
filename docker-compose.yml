@@ -8,6 +8,10 @@ services:
       - '5000'
     environment:
       - HOST=0.0.0.0
+    networks:
+      flask_app:
+        aliases:
+          - flask
     command: python app.py
   nginx:
     image: nginx:latest
@@ -17,3 +21,10 @@ services:
       - flask
     ports:
       - '4000:4000'
+    networks:
+      flask_app:
+        aliases:
+          - nginx
+
+networks:
+  flask_app:
